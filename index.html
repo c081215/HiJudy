@@ -2,22 +2,351 @@
 <html>
 <body>
 
-<h1>Hi</h1>
-<div></div>
-<textarea id="names" name="names" rows="4" cols="50">
-At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-</textarea>
-
-<form action="/action_page.php">
-<label for="w3review">Review of W3Schools:</label>
-
-  <br><br>
-  <input type="submit" value="Submit">
-</form>
-
-<script></script>
-<style>
+<h1>Hi Judy!</h1>
+<div class="d-flex flex-row">
+  <div class="d-flex flex-col">
+    <h3>Names</h3>
+    <textarea
+      class="names"
+      id="names">
+Johnny
+Felix
+Michelle
+Kendra
+Web
+Roger
+Action
+Rene
+Andria
+Rona
+Dylan
+Chuan
+Judy
+Phoebe
+Pat
+KJ
+Luga
+Albert
+Cloud
+Stefan
+Wenn
+Clive
+Kevin
+Ting
+Silvia
+Water
+Roxy
+Patty
+Jason
+Lay
+Hsiu
+Tony
+Fabien
+Manpreet
+Soufiane</textarea>
+    <input
+      class="button"
+      type="button"
+      value="Get Evaluated List"
+      onclick="getEvaluatedList()">
     
+  </div>
+  <div class="d-flex flex-col ml-20">
+    <h3>Counterparts</h3>
+    <textarea
+      class="counterparts"
+      id="counterparts">
+Web	Albert	Pat	Luga	Rene	KJ	Wenn	Albert	Action	Cloud	Roxy 	Tony	Hsiu	Judy	Phoebe	Dylan
+Action	Roxy	Pat	Cloud 	Wenn	Rona	Lay	Jason	Kevin	Water	Clive	Roger	Web	Silvia		
+Cloud	Action	Roxy	Luga	Silvia	Wenn	Water	Jason	Roger	Dylan	Clive	Web				
+Roxy 	Action	Clive	Kevin	Pat	Luga	Wenn	Water	Lay	Cloud	Tony	Dylan	Jason	Web		
+Kevin	Action	Roxy	Water												
+Water 	Action	Clive	Roxy	Jason	Kevin	Cloud									
+Lay	Action	Roger	Roxy												
+Jason	Action	Roxy	Cloud	Water											
+Clive	Action	Roger	Cloud	Water	Roxy										
+Roger	Action	Cloud	Lay	Clive											
+Hsiu	Web	KJ													
+Tony	Web	Dylan	Roxy												
+Stefan	Andria	Chuan
+Andria	Stefan	Chuan
+Chuan	Andria	Stefan
+Luga	Web	Dylan	Pat	Rene	KJ	Wenn	Phoebe	Cloud	Michelle	Roxy
+Phoebe	Albert	Michelle	Luga	Web						
+Michelle	Rona	Phoebe	Luga	Johnny	Wenn					
+Wenn	Johnny	Rene	Luga	Cloud	Roxy	Patty	Michelle 	Web	Action	
+Pat	Web 	Roxy	Rene	KJ	Rona	Luga
+Dylan	Web 	Roxy	Luga	Rona	Tony	
+Albert	Web 	KJ	Phoebe			
+Fabien	Judy	Silvia	Rene	KJ	Manpreet	Soufiane		
+Manpreet	Fabien	Judy	Silvia					
+Silvia	Fabien 	Judy	Rene	Cloud	Patty	Action	KJ	Manpreet
+Soufiane	Fabien 	Judy	Silvia					
+Carolina	Fabien 	Judy	Silvia					
+Felix	
+Kendra	Felix
+KJ	Rene 	Web	Pat	Fabien	Luga	Judy	Albert	Hsiu	Silvia
+Judy	Rene 	Web	Ting	Silvia	Fabien	KJ		Manpreet	
+Rona	Pat	Ting	Dylan	Action	Michelle				
+Ting	Rona	Judy	Rene	
+Patty	Wenn 	Silvia</textarea>
+    <input
+      class="button"
+      type="button"
+      value="Check Bidirection"
+      onclick="checkBidirection()">
+  </div>
+  <div class="d-flex flex-col ml-60">
+    <h3>BU and Function</h3>
+    <textarea
+      class="bu-function"
+      id="bu-function">
+BU Maker BU
+Head	Web
+PM	Action
+PM	Cloud
+PM	Roxy 
+FE	Kevin
+FE	Water 
+FE	Lay
+FE	Jason
+BE	Clive
+BE	Roger
+	Hsiu
+	Tony
+BU Online
+Sales	Stefan
+Affliate manager	Andria
+Graphic designer	Chuan
+BU CCBU
+Head	Luga
+	Phoebe
+	Michelle
+	Wenn
+BU TW sales
+Head	Pat
+Sales	Dylan
+Sales	Albert
+BU EMEA
+Head	Fabien
+AM	Manpreet
+PJM / HQC	Silvia
+BD	Soufiane
+AM	Carolina
+BU Lab
+Head	Felix
+	Kendra
+BU Admin
+Auditor	KJ
+HR	Judy
+CS	Rona
+Receptionist	Ting
+BU Oversea sales
+Sales	Patty</textarea>
+  </div>
+  <div class="d-flex flex-col ml-20">
+    <h3>Query</h3>
+    <textarea
+      class="query"
+      id="query"
+      oninput="queryBUAndFunction()">Web</textarea>
+    <h3>Output</h3>
+    <textarea
+      class="output"
+      id="output">
+Maker BU
+Web
+Head</textarea>
+  </div>
+</div>
+<div
+  class="d-flex flex-col"
+  style="display: none;"
+  id="results-div">
+  <h3>Results</h3>
+  <textarea
+    class="results"
+    id="results">
+  </textarea>
+</div>
+
+<script>
+  let _buAndFunction = '';
+  let buAndFunctionList = [];
+
+  const getEvaluatedList = () => {
+    const names = document.getElementById('names').value;
+    const counterparts = document.getElementById('counterparts').value;
+    const nameList = [];
+    const evaluated = {};
+    names.split('\n').forEach(name => {
+      if (name.trim()) {
+        nameList.push(name.trim());
+        evaluated[name.trim().toLowerCase()] = [];
+      }
+    });
+    counterparts.split('\n').forEach(line => {
+      const s = line.trim().split('\t');
+      for (let i = 1; i < s.length; i++) {
+        if (evaluated[s[i].trim().toLowerCase()]) {
+          evaluated[s[i].trim().toLowerCase()].push(s[0].trim());
+        } else if (s[i].trim()) {
+          console.log(`"${s[i].trim()}" is a bad name`);
+        }
+      }
+    });
+    let results = '';
+    nameList.forEach(name => {
+      results += name + '\t';
+      evaluated[name.toLowerCase()].sort((a, b) => a > b ? 1 : -1);
+      evaluated[name.toLowerCase()].forEach(e => {
+        results += e + '\t';
+      })
+      results += '\n';
+    });
+    document.getElementById('results').value = results;
+    document.getElementById('results-div').style.display = '';
+    console.log('getEvaluatedList done');
+  };
+
+  const checkBidirection = () => {
+    const bosses = ['johnny', 'rene', 'felix'];
+    const names = document.getElementById('names').value;
+    const counterparts = document.getElementById('counterparts').value;
+    const nameList = [];
+    const evaluated = {};
+    names.split('\n').forEach(name => {
+      if (name.trim()) {
+        nameList.push(name.trim());
+        evaluated[name.trim().toLowerCase()] = [];
+      }
+    });
+    counterparts.split('\n').forEach(line => {
+      const s = line.trim().split('\t');
+      for (let i = 1; i < s.length; i++) {
+        if (evaluated[s[i].trim().toLowerCase()]) {
+          evaluated[s[i].trim().toLowerCase()].push(s[0].trim());
+        } else if (s[i].trim() && !bosses.includes(s[i].trim().toLowerCase())) {
+          console.log(`"${s[i].trim()}" not found`);
+        }
+      }
+    });
+    let results = '';
+    nameList.forEach(name => {
+      if (bosses.includes(name.toLowerCase())) {
+        return;
+      }
+      evaluated[name.toLowerCase()].sort((a, b) => a > b ? 1 : -1);
+      evaluated[name.toLowerCase()].forEach(name2 => {
+        let exists = false;
+        if (evaluated[name2.trim().toLowerCase()]) {
+          evaluated[name2.trim().toLowerCase()].forEach(name3 => {
+            if (name3.trim().toLowerCase() === name.toLowerCase()) {
+              exists = true;
+            }
+          })
+        } else {
+          console.log(`"${name2.trim()}" not found`);
+        }
+        if (!exists) {
+          results += `${name} should be evaluated by ${name2}\n`;
+        }
+      });
+    });
+    document.getElementById('results').value = results;
+    document.getElementById('results-div').style.display = '';
+    console.log('checkBidirection done');
+  };
+
+  const queryBUAndFunction = () => {
+    const buAndFunction = document.getElementById('bu-function').value;
+    if (buAndFunction !== _buAndFunction) {
+      _buAndFunction = buAndFunction;
+      buAndFunctionList = [];
+      let bu = '';
+      buAndFunction.split('\n').forEach(s => {
+        if (s.startsWith('BU')) {
+          bu = s.trim().slice(3);
+        } else {
+          const func = s.split('\t')[0].trim();
+          const name = s.split('\t')[1];
+          if (name) {
+            buAndFunctionList.push({
+              name: name.trim().toLowerCase(),
+              str: `${bu}\n${name.trim()}\n${func}`
+            });
+          }
+        }
+      });
+      buAndFunctionList.sort((a, b) => a.name > b.name ? 1 : -1);
+    }
+    let output = '?';
+    const query = document.getElementById('query').value.trim().toLowerCase();
+    if (!query) {
+      document.getElementById('output').value = output;
+      return;
+    }
+    for (let i = 0; i < buAndFunctionList.length; i++) {
+      if (buAndFunctionList[i].name.startsWith(query)) {
+        output = buAndFunctionList[i].str;
+        break;
+      }
+    }
+    document.getElementById('output').value = output;
+  };
+</script>
+<style>
+h1 {
+  margin: 0;
+}
+.d-flex {
+  display: flex;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-col {
+  flex-direction: column;
+}
+.ml-20 {
+  margin-left: 20px;
+}
+.ml-60 {
+  margin-left: 60px;
+}
+textarea {
+  overflow: scroll;
+  white-space: nowrap;
+  resize: none;
+}
+.names {
+  width: 124px;
+  height: 260px;
+}
+.counterparts {
+  width: 420px;
+  height: 260px;
+}
+.results {
+  width: 570px;
+  height: 260px;
+}
+.bu-function {
+  width: 260px;
+  height: 260px;
+}
+.query {
+  width: 160px;
+  height: 16px;
+}
+.output {
+  width: 160px;
+  height: 174px;
+}
+.button {
+  width: 130px;
+  margin-top: 20px;
+}
 </style>
 
 </body>
