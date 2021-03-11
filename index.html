@@ -169,6 +169,17 @@ Maker BU
 Web
 Head</textarea>
   </div>
+  <div class="d-flex flex-col ml-60">
+    <h3>Names to be shuffled</h3>
+    <textarea
+      class="query2"
+      id="query2"
+      oninput="shuffleNames()">Action	Cloud	Roxy</textarea>
+    <h3>Output</h3>
+    <textarea
+      class="output2"
+      id="output2">Cloud	Roxy	Action</textarea>
+  </div>
 </div>
 <div
   class="d-flex flex-col"
@@ -305,6 +316,22 @@ Head</textarea>
     }
     document.getElementById('output').value = output;
   };
+
+  const shuffleNames = () => {
+    const names = document.getElementById('query2').value;
+    const splitedNames = names.trim().split('\t');
+    let output = '';
+    if (splitedNames.length > 1) {
+      splitedNames.sort(() => Math.random() - 0.5);
+      for (let i = 0; i < splitedNames.length; i++) {
+        output += splitedNames[i].trim();
+        if (i < splitedNames.length - 1) {
+          output += '\t';
+        }
+      }
+    }
+    document.getElementById('output2').value = output;
+  };
 </script>
 <style>
 h1 {
@@ -353,6 +380,14 @@ textarea {
 .output {
   width: 160px;
   height: 158px;
+}
+.query2 {
+  width: 320px;
+  height: 32px;
+}
+.output2 {
+  width: 320px;
+  height: 32px;
 }
 .button {
   width: 130px;
