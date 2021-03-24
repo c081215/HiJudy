@@ -19,7 +19,6 @@ Michelle
 Kendra
 Web
 Roger
-Action
 Rene
 Andria
 Rona
@@ -36,7 +35,6 @@ Stefan
 Wenn
 Clive
 Kevin
-Ting
 Silvia
 Water
 Roxy
@@ -47,7 +45,11 @@ Hsiu
 Tony
 Fabien
 Manpreet
-Soufiane</textarea>
+Soufiane
+Carolina
+Zac
+Ray
+Joy</textarea>
     <input
       class="button"
       type="button"
@@ -245,6 +247,8 @@ RD mgmt</textarea>
     const names = document.getElementById('names').value;
     const counterparts = document.getElementById('counterparts').value;
     const nameList = [];
+    const nameListBuOrder = [];
+    const nameListBuOrderLower = [];
     const evaluated = {};
     names.split('\n').forEach(name => {
       if (name.trim()) {
@@ -254,6 +258,11 @@ RD mgmt</textarea>
     });
     counterparts.split('\n').forEach(line => {
       const s = line.trim().split('\t');
+      if (s.length < 2) {
+        return;
+      }
+      nameListBuOrder.push(s[0].trim());
+      nameListBuOrderLower.push(s[0].trim().toLowerCase());
       for (let i = 1; i < s.length; i++) {
         if (evaluated[s[i].trim().toLowerCase()]) {
           evaluated[s[i].trim().toLowerCase()].push(s[0].trim());
@@ -264,6 +273,14 @@ RD mgmt</textarea>
     });
     let results = '';
     nameList.forEach(name => {
+      if (bosses.includes(name.toLowerCase())) {
+        return;
+      }
+      if (!nameListBuOrderLower.includes(name.toLowerCase())) {
+        console.log(`"${name}" not in BU list`);
+      }
+    })
+    nameListBuOrder.forEach(name => {
       if (bosses.includes(name.toLowerCase())) {
         return;
       }
