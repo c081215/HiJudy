@@ -9,7 +9,7 @@
 <h1>Hi Judy!</h1>
 <div class="d-flex flex-row">
   <div class="d-flex flex-col">
-    <h3>Names</h3>
+    <h3>到職順序</h3>
     <textarea
       class="names"
       id="names">
@@ -51,55 +51,64 @@ April
 Eason
 Kay
 Allan
-Gary</textarea>
+Gary
+Davison
+Angelina
+Stone
+Tweety
+Fion</textarea>
     <input
       class="button"
       type="button"
-      value="Get Evaluated List"
-      onclick="getEvaluatedList()">
+      value="Get Counterparts"
+      onclick="getCounterparts()">
     
   </div>
   <div class="d-flex flex-col ml-20">
-    <h3>Counterparts</h3>
+    <h3>Evaluated List</h3>
     <textarea
-      class="counterparts"
-      id="counterparts">
-Ray	Rene	Michelle	KJ	Silvia
-Hsiu	Web	KJ	Rene	Johnny
-Luga	Web	Dylan	Pat	Rene	KJ	Peter	Allan	Eason	Silvia
-Eason	Luga	Dylan	Pat	Peter					
-Rona	Pat	Zac	Dylan	Michelle			
-Michelle	Rene	Johnny	Rona	Ray	Emily	Albert	WeiWei
-Allan	Web	Dylan	Pat	Rene	KJ	Peter	Luga		
-Clive	Tony	Roger	Peter	Lay	Kay	JasonZ	Mike		
-JasonZ	Peter	Lay	Kay	Clive					
-Lay	Peter	JasonZ	Kay	Clive					
-Roger	Clive	Mike							
-Kay	Peter	JasonZ 	Lay	Clive					
-Peter	Luga	Clive	JasonZ	Lay 	Kay	Allan	Eason	Silvia	Web
-Water	Mike	Tony	Max							
-Mike	Roger	Clive	Tony	Water						
-Tony	Web	Dylan	Water	Silvia	Clive	Kendra	Max	Stefan	Mike	WeiWei
-Kendra	Web 	Tony	WeiWei							
-Max	Water	Tony								
-WeiWei	Kendra	Tony	Michelle	KJ	Web					
-April	Rene	Andria	Stefan
-Stefan	Andria	Tony	April
-Andria	Stefan	April	
-Pat	Luga	Rene	KJ	Rona	Allan	Eason	
-Dylan	Web 	Tony	Luga	Rona	KJ	Allan	Eason
-Albert	KJ	Michelle					
-Fabien	Carolina	Silvia	Rene	KJ	Soufiane						
-Silvia	Fabien 	Peter	Rene	Emily	Patty	KJ	Soufiane	Carolina	Ray	Tony	Luga
-Soufiane	Fabien 	Carolina	Silvia								
-Carolina	Fabien 	Soufiane	Silvia								
-Gary	Web
-KJ	Rene 	Web	Pat	Fabien	Luga	Dylan	Albert	Hsiu	Silvia	Emily	Ray	Judy	WeiWei	Allan
-Judy	Rene 	Web	Zac	KJ										
-Zac	Rona	Judy	Rene											
-Web	Peter	Allan	Luga	Rene	KJ	Kendra	Tony	Hsiu	Judy	Dylan	Gary	WeiWei		
-Emily	Rene 	Johnny	KJ	Silvia	Michelle									
-Patty	Silvia</textarea>
+      class="evaluated-list"
+      id="evaluatedList">
+Johnny	Emily	Hsiu	Michelle	Gary														
+Rene	Allan	April	Emily	Fabien	Hsiu	Judy	KJ	Michelle	Pat	Ray	Silvia	Web	Zac	Dylan	Davison	Rona	Albert	Gary
+KJ	Albert	Allan	Dylan	Emily	Fabien	Hsiu	Judy	Pat	Ray	Silvia	Web	Davison	WeiWei	Michelle	April			
+Judy	KJ	Web	Zac	Hsiu	Tony	Michelle 	Silvia											
+Zac	Judy	Rona	Gary															
+Web	Allan	Dylan	Gary	Hsiu	Judy	KJ	Tony	Davison	WeiWei	Angelina								
+Emily	Johnny	KJ	Michelle	Silvia														
+Ray	Allan	KJ	Michelle	Patty														
+Davison	Allan	Dylan	Eason	KJ	Pat	Web												
+Eason	Allan	Pat	Kay	Davison	Dylan	Albert	Angelina											
+Rona	Dylan	Michelle	Zac															
+Michelle	Albert	Emily	Johnny	Ray	Rona	Fion	WeiWei	Judy	KJ									
+Fion	Michelle																	
+Allan	Eason	KJ	Ray	Tony	Angelina	Stone	Kay	Silvia	Pat	Davison	Web							
+JasonZ	Clive	Kay	Lay	Angelina														
+Lay	Clive	JasonZ	Kay	Angelina														
+Roger	Clive	Mike																
+Kay	Clive	JasonZ	Lay	Angelina	Silvia	Tony	Allan	Eason										
+Angelina	Allan	Clive	Eason	JasonZ	Kay	Lay	Silvia	Web										
+Stone	Clive	Allan																
+Tweety	Gary																	
+Water	Max	Mike	Tony															
+Mike	Clive	Roger	Tony	Water														
+Tony	Allan	Clive	Kay	Max	Mike	Water	Web	WeiWei	Judy									
+Max	Tony	Water																
+WeiWei	KJ	Michelle	Web	Tony														
+Clive	JasonZ	Kay	Lay	Mike	Roger	Tony	Angelina	Stone										
+Hsiu	KJ	Web	Judy															
+Gary	Web	Tweety	Pat	Zac														
+April	Andria	Stefan	KJ															
+Stefan	Andria	April																
+Andria	April	Stefan																
+Pat	Eason	KJ	Davison	Allan	Gary													
+Dylan	KJ	Rona	Web	Davison	Eason													
+Albert	KJ	Michelle	Eason															
+Fabien	Carolina	KJ	Silvia	Soufiane														
+Silvia	Carolina	Emily	Fabien	KJ	Kay	Soufiane	Angelina	Allan	Judy									
+Soufiane	Carolina	Fabien	Silvia															
+Carolina	Fabien	Silvia	Soufiane															
+Patty	Ray</textarea>
     <input
       class="button"
       type="button"
@@ -118,12 +127,13 @@ BU XR
 Head	Hsiu
 
 BU VEx
-Head	Luga
+Head	Davison
 PM	Eason
 
 BU CS
 Head	Rona
 PM	Michelle
+Sales assistant	Fion
 
 BU 2D Maker
 Head	Allan
@@ -131,8 +141,10 @@ RD	Clive
 RD	JasonZ
 RD	Lay
 RD	Roger
-QA	Kay
-PM	Peter
+PM	Kay
+PM	Angelina
+RD	Tweety
+RD	Stone
 
 BU 3D Maker
 RD	Water
@@ -212,79 +224,75 @@ MGMT</textarea>
   let _buAndFunction = '';
   let buAndFunctionList = [];
 
-  const getEvaluatedList = () => {
+  const getCounterparts = () => {
     const names = document.getElementById('names').value;
-    const counterparts = document.getElementById('counterparts').value;
+    const evaluatedList = document.getElementById('evaluatedList').value;
     const nameList = [];
-    const evaluated = {};
+    const counterparts = {};
     names.split('\n').forEach(name => {
       if (name.trim()) {
         nameList.push(name.trim());
-        evaluated[name.trim().toLowerCase()] = [];
+        counterparts[name.trim().toLowerCase()] = [];
       }
     });
-    counterparts.split('\n').forEach(line => {
+    evaluatedList.split('\n').forEach(line => {
       const s = line.trim().split('\t');
       for (let i = 1; i < s.length; i++) {
-        if (evaluated[s[i].trim().toLowerCase()]) {
-          evaluated[s[i].trim().toLowerCase()].push(s[0].trim());
+        const nameLower = s[i].trim().toLowerCase();
+        if (counterparts[nameLower]) {
+          counterparts[nameLower].push(s[0].trim());
         } else if (s[i].trim()) {
           console.log(`"${s[i].trim()}" is a bad name`);
         }
       }
     });
+    const bosses = ['johnny', 'rene', 'felix'];
     let results = '';
     nameList.forEach(name => {
+      if (bosses.includes(name.toLowerCase())) {
+        return;
+      }
       results += name + '\t';
-      evaluated[name.toLowerCase()].sort((a, b) => a > b ? 1 : -1);
-      evaluated[name.toLowerCase()].forEach(e => {
+      counterparts[name.toLowerCase()].sort((a, b) => a > b ? 1 : -1);
+      counterparts[name.toLowerCase()].forEach(e => {
         results += e + '\t';
       })
       results += '\n';
     });
     document.getElementById('results').value = results;
     document.getElementById('results-div').style.display = '';
-    console.log('getEvaluatedList done');
+    console.log('getCounterparts done');
   };
 
   const checkBidirection = () => {
     const bosses = ['johnny', 'rene', 'felix'];
-    const names = document.getElementById('names').value;
-    const counterparts = document.getElementById('counterparts').value;
-    const nameList = [];
+    const evaluatedListData = document.getElementById('evaluatedList').value;
+    const evaluatedList = {};
     const nameListBuOrder = [];
-    const nameListBuOrderLower = [];
     const evaluated = {};
-    names.split('\n').forEach(name => {
-      if (name.trim()) {
-        nameList.push(name.trim());
-        evaluated[name.trim().toLowerCase()] = [];
-      }
-    });
-    counterparts.split('\n').forEach(line => {
+    evaluatedListData.split('\n').forEach(line => {
       const s = line.trim().split('\t');
       if (s.length < 2) {
         return;
       }
-      nameListBuOrder.push(s[0].trim());
-      nameListBuOrderLower.push(s[0].trim().toLowerCase());
-      for (let i = 1; i < s.length; i++) {
-        if (evaluated[s[i].trim().toLowerCase()]) {
-          evaluated[s[i].trim().toLowerCase()].push(s[0].trim());
-        } else if (s[i].trim() && !bosses.includes(s[i].trim().toLowerCase())) {
-          console.log(`"${s[i].trim()}" not found`);
-        }
-      }
+      const name = s[0].trim();
+      const nameLower = s[0].trim().toLowerCase();
+      nameListBuOrder.push(name);
+      evaluated[nameLower] = [];
+      evaluatedList[name] = s.slice(1);
     });
-    let results = '';
-    nameList.forEach(name => {
-      if (bosses.includes(name.toLowerCase())) {
-        return;
-      }
-      if (!nameListBuOrderLower.includes(name.toLowerCase())) {
-        console.log(`"${name}" not in BU list`);
-      }
-    })
+    nameListBuOrder.forEach(name => {
+      const nameLower = name.toLowerCase();
+      evaluatedList[name].forEach(name2 => {
+        const name2Lower = name2.trim().toLowerCase();
+        if (evaluated[name2Lower]) {
+          evaluated[nameLower].push(name2);
+        } else {
+          console.log(`"${name}": "${name2}" not found`);
+        }
+      });
+    });
+    const errors = {};
     nameListBuOrder.forEach(name => {
       if (bosses.includes(name.toLowerCase())) {
         return;
@@ -292,20 +300,28 @@ MGMT</textarea>
       evaluated[name.toLowerCase()].sort((a, b) => a > b ? 1 : -1);
       evaluated[name.toLowerCase()].forEach(name2 => {
         let exists = false;
-        if (evaluated[name2.trim().toLowerCase()]) {
-          evaluated[name2.trim().toLowerCase()].forEach(name3 => {
-            if (name3.trim().toLowerCase() === name.toLowerCase()) {
-              exists = true;
-            }
-          })
-        } else {
-          console.log(`"${name2.trim()}" not found`);
-        }
+        evaluated[name2.trim().toLowerCase()].forEach(name3 => {
+          if (name3.trim().toLowerCase() === name.toLowerCase()) {
+            exists = true;
+          }
+        })
         if (!exists) {
-          results += `${name} should be evaluated by ${name2}\n`;
+          if (!errors[name2]) {
+            errors[name2] = '';
+          }
+          errors[name2] += `${name2} should evaluate ${name}\n`;
         }
       });
     });
+    let results = '';
+    nameListBuOrder.forEach(name => {
+      if (errors[name]) {
+        results += errors[name];
+      }
+    });
+    if (!results) {
+      results = 'Good!';
+    }
     document.getElementById('results').value = results;
     document.getElementById('results-div').style.display = '';
     console.log('checkBidirection done');
@@ -392,7 +408,7 @@ textarea {
   width: 124px;
   height: 260px;
 }
-.counterparts {
+.evaluated-list {
   width: 420px;
   height: 260px;
 }
