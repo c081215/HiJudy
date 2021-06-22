@@ -75,12 +75,12 @@ KJ	Albert	Allan	Dylan	Emily	Fabien	Hsiu	Judy	Pat	Ray	Silvia	Web	Davison	WeiWei	M
 Judy	KJ	Web	Zac	Hsiu	Tony	Michelle 	Silvia											
 Zac	Judy	Rona	Gary															
 Web	Allan	Dylan	Gary	Hsiu	Judy	KJ	Tony	Davison	WeiWei	Angelina								
-Emily	Johnny	KJ	Michelle	Silvia														
+Emily	KJ	Michelle	Silvia														
 Ray	Allan	KJ	Michelle	Patty														
 Davison	Allan	Dylan	Eason	KJ	Pat	Web												
 Eason	Allan	Pat	Kay	Davison	Dylan	Albert	Angelina											
 Rona	Dylan	Michelle	Zac															
-Michelle	Albert	Emily	Johnny	Ray	Rona	Fion	WeiWei	Judy	KJ									
+Michelle	Albert	Emily	Ray	Rona	Fion	WeiWei	Judy	KJ									
 Fion	Michelle																	
 Allan	Eason	KJ	Ray	Tony	Angelina	Stone	Kay	Silvia	Pat	Davison	Web							
 JasonZ	Clive	Kay	Lay	Angelina														
@@ -227,13 +227,17 @@ MGMT</textarea>
   const getCounterparts = () => {
     const names = document.getElementById('names').value;
     const evaluatedList = document.getElementById('evaluatedList').value;
-    const nameList = [];
+    const nameListBuOrder = [];
     const counterparts = {};
-    names.split('\n').forEach(name => {
-      if (name.trim()) {
-        nameList.push(name.trim());
-        counterparts[name.trim().toLowerCase()] = [];
+    evaluatedList.split('\n').forEach(line => {
+      const s = line.trim().split('\t');
+      if (s.length < 2) {
+        return;
       }
+      const name = s[0].trim();
+      const nameLower = s[0].trim().toLowerCase();
+      nameListBuOrder.push(name);
+      counterparts[nameLower] = [];
     });
     evaluatedList.split('\n').forEach(line => {
       const s = line.trim().split('\t');
@@ -246,12 +250,8 @@ MGMT</textarea>
         }
       }
     });
-    const bosses = ['johnny', 'rene', 'felix'];
     let results = '';
-    nameList.forEach(name => {
-      if (bosses.includes(name.toLowerCase())) {
-        return;
-      }
+    nameListBuOrder.forEach(name => {
       results += name + '\t';
       counterparts[name.toLowerCase()].sort((a, b) => a > b ? 1 : -1);
       counterparts[name.toLowerCase()].forEach(e => {
